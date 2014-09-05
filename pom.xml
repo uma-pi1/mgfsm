@@ -8,7 +8,7 @@
 	<repositories>
         <repository>
     		<id>cloudera-repo-releases</id>
-    		<url>https://repository.cloudera.com/artifactory/cloudera-repo/</url>
+    		<url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
   		</repository>
    	 </repositories>
     
