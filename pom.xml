@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.mpii</groupId>
+	<artifactId>mgfsm</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+	<repositories>
+        <repository>
+    		<id>cloudera-repo-releases</id>
+    		<url>https://repository.cloudera.com/artifactory/cloudera-repo/</url>
+  		</repository>
+   	 </repositories>
+    
+    
+	<dependencies>
+	
+	
+		<dependency>
+	    	<groupId>jdk.tools</groupId>
+	    	<artifactId>jdk.tools</artifactId>
+	    	<version>${java.version}</version>
+	    	<systemPath>${java.home}/../lib/tools.jar</systemPath>
+	    	<scope>system</scope>
+		</dependency>
+	
+	
+	
+	
+  	<dependency>
+  	<groupId>org.apache.hadoop</groupId>
+  	<artifactId>hadoop-core</artifactId>
+  	<version>0.20.2-cdh3u1</version>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>it.unimi.dsi</groupId>
+  		<artifactId>fastutil</artifactId>
+  		<version>6.5.2</version>
+  	</dependency>
+  	<dependency>
+		<groupId>org.apache.mahout</groupId>
+		<artifactId>mahout-math</artifactId>
+		<version>0.7</version>
+	</dependency>
+	<dependency>
+	<groupId>org.apache.mahout</groupId>
+	<artifactId>mahout-core</artifactId>
+	<version>0.7</version>
+</dependency>
+	<dependency>
+	<groupId>org.apache.hadoop</groupId>
+	<artifactId>hadoop-common</artifactId>
+	<version>0.22.0</version>
+</dependency>
+	
+	<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-math</artifactId>
+	<version>2.2</version>
+</dependency>
+	
+	<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-compress</artifactId>
+	<version>1.1</version>
+</dependency>
+	
+	<dependency>
+	<groupId>junit</groupId>
+	<artifactId>junit</artifactId>
+	<version>3.8.2</version>
+</dependency>
+	
+	<dependency>
+	<groupId>commons-logging</groupId>
+	<artifactId>commons-logging</artifactId>
+	<version>1.1.1</version>
+</dependency>
+	
+	
+	<dependency>
+	<groupId>org.apache.mahout</groupId>
+	<artifactId>mahout-integration</artifactId>
+	<version>0.7</version>
+</dependency>
+	
+	
+	
+  </dependencies>
+  
+  
+ <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.1</version>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+        
+      <plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>2.4</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>de.mpii.fsm.driver.FsmDriver</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+    
+    <plugin>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <executions>
+      <execution>
+        <phase>package</phase>
+        <goals>
+          <goal>single</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+    <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>de.mpii.fsm.driver.FsmDriver</mainClass>
+          </manifest>
+        </archive>
+      <descriptorRefs>
+        <descriptorRef>jar-with-dependencies</descriptorRef>
+      </descriptorRefs>
+     </configuration>
+  </plugin>
+    
+    
+    </plugins>
+</build>
+  
+  
+</project>

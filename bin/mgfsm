@@ -1,0 +1,48 @@
+#!/bin/bash
+# MG-FSM command script
+
+
+
+
+
+
+
+if [ "$JAVA_HOME" = "" ]; then
+  echo "Error: JAVA_HOME is not set."
+  exit 1
+fi
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+execMode="s"
+mgfsmJar="$DIR/../target/mgfsm-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
+mgfsmArgs=$*
+
+while [[ $# > 1 ]]
+do
+key="$1"
+shift
+
+case $key in
+    -m|--execMode)
+    execMode="$1"
+    shift
+    ;;
+    *)
+    # unknown option
+    ;;
+esac
+done
+
+if [ $execMode == "s" ] ; then
+	echo "Executing MG-FSM in sequential mode"
+	java -jar $mgfsmJar $mgfsmArgs
+else
+	#Check HADOOP_HOME
+	if [ "$HADOOP_HOME" = "" ]; then
+		  echo "Error: HADOOP_HOME is not set."
+		  exit 1
+	fi
+	echo "Executing MG-FSM in distributed mode"
+	$HADOOP_HOME/bin/hadoop jar $mgfsmJar $mgfsmArgs
+fi
+
