@@ -6,7 +6,7 @@ Introduction
 
 Sequential pattern mining aims to discover hidden patterns and relationships in collections of sequential data; it has been successfully applied in a number of data mining tasks including text mining (e.g., finding frequent phrases), market basket analysis (e.g., finding frequent sequences of product sales), and web usage mining (e.g., finding frequent sequences of page visits). In particular, in the context of text mining, frequent phrases (commonly referred to as n-grams) are widely used in applications such as machine translation, speech recognition and information extraction.
 
-[MG-FSM][1] is a scalable, general-purpose frequent sequence mining algorithm built for MapReduce. It takes as input a collection of sequences (e.g., a text collection or Web usage logs) and mines frequent sequences subject to a number of constraints such as minimum frequency, maximum length, or proximity constraints (position-based or temporal). A detailed description of MG-FSM can be found in our SIGMOD paper [here][2].
+[MG-FSM][1] is a scalable, general-purpose frequent sequence mining algorithm built for MapReduce. It takes as input a collection of sequences (e.g., a text collection or Web usage logs) and mines frequent sequences subject to a number of constraints such as minimum frequency, maximum length, or proximity constraints (position-based or temporal). A detailed description of MG-FSM can be found [here][2].
 
 
 
