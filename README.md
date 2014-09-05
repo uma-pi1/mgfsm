@@ -92,7 +92,7 @@ Run the following command to find frequent all subsequences with support (σ = 3
 and maximum gap (γ = 2).
 >
 >
->       $MGFSM_HOME/bin/mgfsm -i /mgfsm/input/ -o /mgfsm/output/ -s 3 -g 2 -l 3 -m s
+>       $MGFSM_HOME/bin/mgfsm -i SAMPLE_INPUT/ -o SAMPLE_OUTPUT/ -s 3 -g 2 -l 3 -m s
 
 Sample output:
 >
