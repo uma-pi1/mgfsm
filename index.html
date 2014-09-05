@@ -50,7 +50,7 @@
 <li> Occur in at least σ ≥ 1  sequences (support threshold).</li>
 <li> Have length at most λ ≥ 2 (length threshold).</li>
 <li> Have gap at most γ ≥ 0 between consecutive items (gap threshold).</li>
-</ul><p>In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line option for details.</p>
+</ul><p>In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line options for details.</p>
 
 <h2>
 <a name="building-mg-fsm" class="anchor" href="#building-mg-fsm"><span class="octicon octicon-link"></span></a>Building MG-FSM</h2>
@@ -111,7 +111,7 @@ sequences (s1, s2 and s3). </p>
 <p>The sequential version of the algorithm runs locally on a single machine. Following example illustrates how to execute in such a mode:</p>
 
 <blockquote>
-<pre><code>  $MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m s
+<pre><code>  $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m s
 </code></pre>
 
 <p>When executing the “-(s)equential” mode the input data file(s) should be in “.txt” format (i.e. “.txt”
@@ -125,7 +125,7 @@ extension should be present in the name) for proper execution.</p>
 example illustrates:</p>
 
 <blockquote>
-<pre><code>  $MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
+<pre><code>  $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
 </code></pre>
 </blockquote>
 
@@ -155,7 +155,7 @@ example illustrates:</p>
 and maximum gap (γ = 2).</p>
 
 <blockquote>
-<pre><code>  $MGFSM_HOME/bin/mgfsm -i SAMPLE_INPUT/ -o SAMPLE_OUTPUT/ -s 3 -g 2 -l 3 -m s
+<pre><code>  $ MGFSM_HOME/bin/mgfsm -i SAMPLE_INPUT/ -o SAMPLE_OUTPUT/ -s 3 -g 2 -l 3 -m s
 </code></pre>
 </blockquote>
 
