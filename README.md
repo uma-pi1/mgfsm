@@ -66,7 +66,7 @@ The sequential version of the algorithm runs locally on a single machine. Follow
 When executing the “-(s)equential” mode the input data file(s) should be in “.txt” format (i.e. “.txt”
 extension should be present in the name) for proper execution.
 
-### Running distributed mode
+### Running in distributed mode
 To execute the algorithm on a Hadoop cluster, issue the “distributed” mode to the algorithm. Following
 example illustrates:
 >
