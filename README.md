@@ -18,7 +18,7 @@ Given a collection of input sequences (a sequence database), MG-FSM finds freque
 +  Have length at most λ ≥ 2 (length threshold).
 +  Have gap at most γ ≥ 0 between consecutive items (gap threshold).
 
-In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line option for details.
+In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line options for details.
 
 
 Building MG-FSM
@@ -62,7 +62,7 @@ sequences (s1, s2 and s3).
 The sequential version of the algorithm runs locally on a single machine. Following example illustrates how to execute in such a mode:
 >
 >
->       $MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m s
+>       $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m s
 When executing the “-(s)equential” mode the input data file(s) should be in “.txt” format (i.e. “.txt”
 extension should be present in the name) for proper execution.
 
@@ -71,7 +71,7 @@ To execute the algorithm on a Hadoop cluster, issue the “distributed” mode t
 example illustrates:
 >
 >
->       $MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
+>       $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
 
 ### Output format
 Frequent sequences are written to a file in the output directory, where each line in the file has the following format:
@@ -92,7 +92,7 @@ Run the following command to find frequent all subsequences with support (σ = 3
 and maximum gap (γ = 2).
 >
 >
->       $MGFSM_HOME/bin/mgfsm -i SAMPLE_INPUT/ -o SAMPLE_OUTPUT/ -s 3 -g 2 -l 3 -m s
+>       $ MGFSM_HOME/bin/mgfsm -i SAMPLE_INPUT/ -o SAMPLE_OUTPUT/ -s 3 -g 2 -l 3 -m s
 
 Sample output:
 >
