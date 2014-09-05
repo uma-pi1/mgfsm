@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="MG-FSM : Large-scale frequent sequence mining">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>MG-FSM</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mpii-d5/mgfsm">View on GitHub</a>
+
+          <h1 id="project_title">MG-FSM</h1>
+          <h2 id="project_tagline">Large-scale frequent sequence mining</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mpii-d5/mgfsm/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mpii-d5/mgfsm/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="mg-fsm" class="anchor" href="#mg-fsm"><span class="octicon octicon-link"></span></a>MG-FSM</h1>
+
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>Sequential pattern mining aims to discover hidden patterns and relationships in collections of sequential data; it has been successfully applied in a number of data mining tasks including text mining (e.g., finding frequent phrases), market basket analysis (e.g., finding frequent sequences of product sales), and web usage mining (e.g., finding frequent sequences of page visits). In particular, in the context of text mining, frequent phrases (commonly referred to as n-grams) are widely used in applications such as machine translation, speech recognition and information extraction.</p>
+
+<p><a href="http://www.mpi-inf.mpg.de/departments/databases-and-information-systems/software/mg-fsm/" title="Mgfsm">MG-FSM</a> is a scalable, general-purpose frequent sequence mining algorithm built for MapReduce. It takes as input a collection of sequences (e.g., a text collection or Web usage logs) and mines frequent sequences subject to a number of constraints such as minimum frequency, maximum length, or proximity constraints (position-based or temporal). A detailed description of MG-FSM can be found <a href="http://resources.mpi-inf.mpg.de/d5/mg-fsm/mg-fsm-sigmod13.pdf" title="SIGMOD paper">here</a>.</p>
+
+<h2>
+<a name="mg-fsm-overview" class="anchor" href="#mg-fsm-overview"><span class="octicon octicon-link"></span></a>MG-FSM overview</h2>
+
+<p>Given a collection of input sequences (a sequence database), MG-FSM finds frequent subsequences that</p>
+
+<ul>
+<li> Occur in at least σ ≥ 1  sequences (support threshold).</li>
+<li> Have length at most λ ≥ 2 (length threshold).</li>
+<li> Have gap at most γ ≥ 0 between consecutive items (gap threshold).</li>
+</ul><p>In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line option for details.</p>
+
+<h2>
+<a name="building-mg-fsm" class="anchor" href="#building-mg-fsm"><span class="octicon octicon-link"></span></a>Building MG-FSM</h2>
+
+<blockquote>
+<ol>
+<li>Prerequisites for building MG-FSM
+
+<ul>
+<li>Java JDK 1.6 or 1.7</li>
+<li>
+<a href="http://maven.apache.org/" title="Maven">Maven</a> 3.2 or higher</li>
+</ul>
+</li>
+<li>Check out the MG-FSM source code to some directory, we call it here as MGFSM_HOME</li>
+<li>
+<p>Compiling:</p>
+
+<pre><code>  $ cd MGFSM_HOME
+  $ mvn clean install
+</code></pre>
+</li>
+<li>
+<p>Set the environment variables:</p>
+
+<pre><code>  $ export JAVA_HOME=/location of Java
+  $ export HADOOP_HOME=/location of Hadoop
+</code></pre>
+</li>
+</ol>
+</blockquote>
+
+<p>After following the above methods, you can run the MG-FSM algorithm with appropriate arguments. Also, note that you can run the algorithm over HDFS data (in distributed mode) or local file system data (in sequential mode).</p>
+
+<h2>
+<a name="running-mg-fsm" class="anchor" href="#running-mg-fsm"><span class="octicon octicon-link"></span></a>Running MG-FSM</h2>
+
+<p>The input sequence file(s) should be of the following format:</p>
+
+<blockquote>
+<pre><code>  s1  Central Park is the best place to be on a sunny day in New York
+  s2  Monday was a sunny day in New York
+  s3  It was a sunny and beautiful New York City afternoon
+</code></pre>
+
+<p>That is, each line represents a sequence, and has the format:</p>
+
+<pre><code>  SequenceId item1 item2 item3 ... itemN
+</code></pre>
+
+<p>In this case, the first token of each line (whitespace delimited) becomes the <em>sequence id</em>, and all additional text of the line is interpreted as a sequence of items. For example, the above sequence database contains 3
+sequences (s1, s2 and s3). </p>
+</blockquote>
+
+<h3>
+<a name="running-in-sequential-mode" class="anchor" href="#running-in-sequential-mode"><span class="octicon octicon-link"></span></a>Running in sequential mode</h3>
+
+<p>The sequential version of the algorithm runs locally on a single machine. Following example illustrates how to execute in such a mode:</p>
+
+<blockquote>
+<pre><code>  $MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m s
+</code></pre>
+
+<p>When executing the “-(s)equential” mode the input data file(s) should be in “.txt” format (i.e. “.txt”
+extension should be present in the name) for proper execution.</p>
+</blockquote>
+
+<h3>
+<a name="running-in-distributed-mode" class="anchor" href="#running-in-distributed-mode"><span class="octicon octicon-link"></span></a>Running in distributed mode</h3>
+
+<p>To execute the algorithm on a Hadoop cluster, issue the “distributed” mode to the algorithm. Following
+example illustrates:</p>
+
+<blockquote>
+<pre><code>  $MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
+</code></pre>
+</blockquote>
+
+<h3>
+<a name="output-format" class="anchor" href="#output-format"><span class="octicon octicon-link"></span></a>Output format</h3>
+
+<p>Frequent sequences are written to a file in the output directory, where each line in the file has the following format:</p>
+
+<blockquote>
+<pre><code>  sequence &lt;tab&gt; #frequency
+</code></pre>
+</blockquote>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>Assume the following input sequences are in a file(s) (.txt) in a directory called SAMPLE_INPUT/</p>
+
+<blockquote>
+<pre><code>  s1 Central Park is the best place to be on a sunny day in New York
+  s2 Monday was a sunny day in New York
+  s3 It was a sunny and beautiful New York City afternoon
+</code></pre>
+</blockquote>
+
+<p>Run the following command to find frequent all subsequences with support (σ = 3), maximum length (λ = 3)
+and maximum gap (γ = 2).</p>
+
+<blockquote>
+<pre><code>  $MGFSM_HOME/bin/mgfsm -i SAMPLE_INPUT/ -o SAMPLE_OUTPUT/ -s 3 -g 2 -l 3 -m s
+</code></pre>
+</blockquote>
+
+<p>Sample output:</p>
+
+<blockquote>
+<pre><code>  sunny New York      3
+  a sunny New         3
+  New York            3
+  sunny New           3
+  a sunny             3
+</code></pre>
+</blockquote>
+
+<h2>
+<a name="command-line-options" class="anchor" href="#command-line-options"><span class="octicon octicon-link"></span></a>Command line options</h2>
+
+<table>
+<thead><tr>
+<th>Option</th>
+<th>Short Hand</th>
+<th>Optional</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>support</td>
+<td>s</td>
+<td>Yes</td>
+<td>1</td>
+<td>The minimum number of times the sequence to be mined must be present in the Database</td>
+</tr>
+<tr>
+<td>gamma</td>
+<td>g</td>
+<td>Yes</td>
+<td>2</td>
+<td>The maximum amount of gap that can be taken for a sequence to be mined by MG-FSM</td>
+</tr>
+<tr>
+<td>lambda</td>
+<td>l</td>
+<td>Yes</td>
+<td>5</td>
+<td>The maximum length of the sequence to be mined is determined by the this parameter.</td>
+</tr>
+<tr>
+<td>execMode</td>
+<td>m</td>
+<td>Yes</td>
+<td>s</td>
+<td>Method of execution viz. (s)equential or (d)istributed</td>
+</tr>
+<tr>
+<td>type</td>
+<td>t</td>
+<td>Yes</td>
+<td>a</td>
+<td>Specify the output type.  Expected values for type: 1. (a)ll 2. (m)aximal 3. (c)losed</td>
+</tr>
+<tr>
+<td>keepFiles</td>
+<td>k</td>
+<td>Yes</td>
+<td>-</td>
+<td>Store the intermediary files for later use or runs. Further, if -k is not specified  the intermediary output will be saved to a temporary location.  The files stored are: 1. Dictionary 2.Encoded Sequences</td>
+</tr>
+<tr>
+<td>resume</td>
+<td>r</td>
+<td>Yes</td>
+<td>-</td>
+<td>Resume running further runs of the MG-FSM algorithm on already  encoded transaction file located in the folder specified in input.</td>
+</tr>
+<tr>
+<td>input</td>
+<td>i</td>
+<td>Yes</td>
+<td>-</td>
+<td>Path where the input transactions / database text file is located.</td>
+</tr>
+<tr>
+<td>output</td>
+<td>o</td>
+<td>No</td>
+<td>-</td>
+<td>Path where the output files are to written.</td>
+</tr>
+<tr>
+<td>tempDir</td>
+<td>tempDir</td>
+<td>Yes</td>
+<td>-</td>
+<td>Specify the temporary directory to be used for the map– reduce jobs</td>
+</tr>
+<tr>
+<td>numReducers</td>
+<td>N</td>
+<td>Yes</td>
+<td>90</td>
+<td>Specify the number of reduce task.</td>
+</tr>
+<tr>
+<td>partitionSize</td>
+<td>p</td>
+<td>Yes</td>
+<td>10000</td>
+<td>Explicitly specify the partition size.</td>
+</tr>
+<tr>
+<td>indexing</td>
+<td>id</td>
+<td>Yes</td>
+<td>full</td>
+<td>Specify the indexing mode. Options are : 1. none 2. minmax 3. full</td>
+</tr>
+<tr>
+<td>split</td>
+<td>sp</td>
+<td>Yes</td>
+<td>false</td>
+<td>Explicitly specify whether or not to allow split by setting this flag.</td>
+</tr>
+</tbody>
+</table><p><strong>Additional Notes</strong></p>
+
+<ul>
+<li>  -(k)eepFiles and -(r)esume options are mutually exclusive.</li>
+<li>  -(i)nput is optional as -(r)esume can also be used for pointing to the input source.</li>
+<li>  -(i)nput and -(r)esume are mutually exclusive.</li>
+<li>  -(o)utput is the only mandatory option. It points to the location where the translated frequent sequences will be written.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">MG-FSM maintained by <a href="https://github.com/mpii-d5">mpii-d5</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
