@@ -8,6 +8,8 @@ Sequential pattern mining aims to discover hidden patterns and relationships in 
 
 [MG-FSM][1] is a scalable, general-purpose frequent sequence mining algorithm built for MapReduce. It takes as input a collection of sequences (e.g., a text collection or Web usage logs) and mines frequent sequences subject to a number of constraints such as minimum frequency, maximum length, or proximity constraints (position-based or temporal). A detailed description of MG-FSM can be found [here][2].
 
+###Contributors
+[Iris Miliaraki] [4], [Klaus Berberich] [5], [Rainer Gemulla] [6], [Kaustubh Beedkar] [7] and [Dhruv Gupta] [8].
 
 
 MG-FSM overview
@@ -137,3 +139,9 @@ Sample output:
 [1]: http://www.mpi-inf.mpg.de/departments/databases-and-information-systems/software/mg-fsm/      "Mgfsm"
 [2]: http://resources.mpi-inf.mpg.de/d5/mg-fsm/mg-fsm-sigmod13.pdf "SIGMOD paper"
 [3]: http://maven.apache.org/ "Maven"
+
+[4]: http://labs.yahoo.com/author/irismili/
+[5]: http://people.mpi-inf.mpg.de/~kberberi/
+[6]: http://dws.informatik.uni-mannheim.de/en/people/professors/prof-dr-rainer-gemulla/
+[7]: http://people.mpi-inf.mpg.de/~kbeedkar/
+[8]: mailto:dhgupta@mpi-inf.mpg.de
