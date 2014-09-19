@@ -140,7 +140,7 @@ Sample output:
 [2]: http://resources.mpi-inf.mpg.de/d5/mg-fsm/mg-fsm-sigmod13.pdf "SIGMOD paper"
 [3]: http://maven.apache.org/ "Maven"
 
-[4]: http://labs.yahoo.com/author/irismili/
+[4]: http://irismili.wordpress.com/
 [5]: http://people.mpi-inf.mpg.de/~kberberi/
 [6]: http://dws.informatik.uni-mannheim.de/en/people/professors/prof-dr-rainer-gemulla/
 [7]: http://people.mpi-inf.mpg.de/~kbeedkar/
