@@ -19,6 +19,7 @@ import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.SequenceFile;
+import org.apache.hadoop.io.SequenceFile.Writer.Option;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
@@ -47,6 +48,7 @@ import de.mpii.fsm.util.IntArrayWritable;
  * 
  * @author Iris Miliaraki
  * @author Spyros Zoupanos
+ * @author Kaustubh Beedkar (kbeedkar@uni-mannheim.de)
  */
 public class FsmJob {
     
@@ -159,16 +161,23 @@ public class FsmJob {
 
         // Sequence file for frequent 1 items
         String fListURI = "fList";
-        FileSystem fs1 = FileSystem.get(URI.create(fListURI), conf);
+        //FileSystem fs1 = FileSystem.get(URI.create(fListURI), conf);
         Path fListPath = new Path(fListURI);
         
         commonConfig.setFlistPath(fListPath);
         
         IntArrayWritable itemKey = new IntArrayWritable();
         LongWritable itemValue = new LongWritable();
+        
+        //CompressionCodec Codec = new GzipCodec();
         SequenceFile.Writer writer = null;
-        writer = SequenceFile.createWriter(fs1, conf, fListPath, itemKey.getClass(), itemValue.getClass());
-
+        Option optPath = SequenceFile.Writer.file(fListPath);
+        Option optKey = SequenceFile.Writer.keyClass(itemKey.getClass());
+        Option optValue = SequenceFile.Writer.valueClass(itemValue.getClass());
+        //Option optCom = SequenceFile.Writer.compression(CompressionType.RECORD, Codec);
+        
+        writer = SequenceFile.createWriter(conf, optPath, optKey, optValue);
+        
         int totalPartitions = 0;
         long partitionCurrSize = 0;
 

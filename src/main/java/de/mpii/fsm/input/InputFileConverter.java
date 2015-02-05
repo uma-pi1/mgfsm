@@ -12,6 +12,10 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.SequenceFile;
+import org.apache.hadoop.io.SequenceFile.CompressionType;
+import org.apache.hadoop.io.SequenceFile.Writer.Option;
+import org.apache.hadoop.io.compress.CompressionCodec;
+import org.apache.hadoop.io.compress.GzipCodec;
 import org.apache.hadoop.mapreduce.Job;
 
 import de.mpii.fsm.util.IntArrayWritable;
@@ -26,6 +30,7 @@ import de.mpii.fsm.util.IntArrayWritable;
  * hadoop jar fsm.jar org.apache.mahout.fsm.InputFileConverter /home/szoup/test/input1 /user/szoup/test
  * 
  * @author Spyros Zoupanos
+ * @author Kaustubh Beedkar (kbeedkar@uni-mannheim.de)
  */
 public class InputFileConverter {
 
@@ -38,7 +43,23 @@ public class InputFileConverter {
     Job job = new Job();
     Configuration conf = job.getConfiguration();
     FileSystem fs = FileSystem.get(URI.create(args[1]), conf);
-    SequenceFile.Writer fileWriter = new SequenceFile.Writer(fs, conf, new Path(args[1]), LongWritable.class, IntArrayWritable.class);
+    
+    Path path = new Path(fs.getUri());
+        
+    LongWritable itemKey = new LongWritable();
+    IntArrayWritable itemValue = new IntArrayWritable();
+    
+    
+    /** GzipCodec might not work */
+    CompressionCodec Codec = new GzipCodec();
+    
+    Option optPath = SequenceFile.Writer.file(path);
+    Option optKey = SequenceFile.Writer.keyClass(itemKey.getClass());
+    Option optValue = SequenceFile.Writer.valueClass(itemValue.getClass());
+    Option optCom = SequenceFile.Writer.compression(CompressionType.RECORD, Codec);
+    
+    SequenceFile.Writer fileWriter = SequenceFile.createWriter(conf, optPath, optKey, optValue, optCom);
+    
     
     String strLine;
     long counter = 0;
