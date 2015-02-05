@@ -32,17 +32,17 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="mg-fsm" class="anchor" href="#mg-fsm"><span class="octicon octicon-link"></span></a>MG-FSM</h1>
+<a id="mg-fsm" class="anchor" href="#mg-fsm" aria-hidden="true"><span class="octicon octicon-link"></span></a>MG-FSM</h1>
 
 <h2>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
 <p>Sequential pattern mining aims to discover hidden patterns and relationships in collections of sequential data; it has been successfully applied in a number of data mining tasks including text mining (e.g., finding frequent phrases), market basket analysis (e.g., finding frequent sequences of product sales), and web usage mining (e.g., finding frequent sequences of page visits). In particular, in the context of text mining, frequent phrases (commonly referred to as n-grams) are widely used in applications such as machine translation, speech recognition and information extraction.</p>
 
 <p><a href="http://www.mpi-inf.mpg.de/departments/databases-and-information-systems/software/mg-fsm/" title="Mgfsm">MG-FSM</a> is a scalable, general-purpose frequent sequence mining algorithm built for MapReduce. It takes as input a collection of sequences (e.g., a text collection or Web usage logs) and mines frequent sequences subject to a number of constraints such as minimum frequency, maximum length, or proximity constraints (position-based or temporal). A detailed description of MG-FSM can be found <a href="http://resources.mpi-inf.mpg.de/d5/mg-fsm/mg-fsm-sigmod13.pdf" title="SIGMOD paper">here</a>.</p>
 
 <h2>
-<a name="mg-fsm-overview" class="anchor" href="#mg-fsm-overview"><span class="octicon octicon-link"></span></a>MG-FSM overview</h2>
+<a id="mg-fsm-overview" class="anchor" href="#mg-fsm-overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>MG-FSM overview</h2>
 
 <p>Given a collection of input sequences (a sequence database), MG-FSM finds frequent subsequences that</p>
 
@@ -50,10 +50,12 @@
 <li> Occur in at least σ ≥ 1  sequences (support threshold).</li>
 <li> Have length at most λ ≥ 2 (length threshold).</li>
 <li> Have gap at most γ ≥ 0 between consecutive items (gap threshold).</li>
-</ul><p>In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line options for details.</p>
+</ul>
+
+<p>In additition to these constraints, MG-FSM also supports other types of constraints. Please refer to the available command line options for details.</p>
 
 <h2>
-<a name="building-mg-fsm" class="anchor" href="#building-mg-fsm"><span class="octicon octicon-link"></span></a>Building MG-FSM</h2>
+<a id="building-mg-fsm" class="anchor" href="#building-mg-fsm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building MG-FSM</h2>
 
 <blockquote>
 <ol>
@@ -86,7 +88,7 @@
 <p>After following the above methods, you can run the MG-FSM algorithm with appropriate arguments. Also, note that you can run the algorithm over HDFS data (in distributed mode) or local file system data (in sequential mode).</p>
 
 <h2>
-<a name="running-mg-fsm" class="anchor" href="#running-mg-fsm"><span class="octicon octicon-link"></span></a>Running MG-FSM</h2>
+<a id="running-mg-fsm" class="anchor" href="#running-mg-fsm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running MG-FSM</h2>
 
 <p>The input sequence file(s) should be of the following format:</p>
 
@@ -106,7 +108,7 @@ sequences (s1, s2 and s3). </p>
 </blockquote>
 
 <h3>
-<a name="running-in-sequential-mode" class="anchor" href="#running-in-sequential-mode"><span class="octicon octicon-link"></span></a>Running in sequential mode</h3>
+<a id="running-in-sequential-mode" class="anchor" href="#running-in-sequential-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running in sequential mode</h3>
 
 <p>The sequential version of the algorithm runs locally on a single machine. Following example illustrates how to execute in such a mode:</p>
 
@@ -119,7 +121,7 @@ extension should be present in the name) for proper execution.</p>
 </blockquote>
 
 <h3>
-<a name="running-in-distributed-mode" class="anchor" href="#running-in-distributed-mode"><span class="octicon octicon-link"></span></a>Running in distributed mode</h3>
+<a id="running-in-distributed-mode" class="anchor" href="#running-in-distributed-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running in distributed mode</h3>
 
 <p>To execute the algorithm on a Hadoop cluster, issue the “distributed” mode to the algorithm. Following
 example illustrates:</p>
@@ -127,10 +129,12 @@ example illustrates:</p>
 <blockquote>
 <pre><code>  $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
 </code></pre>
+
+<p>Note: The current version of MG-FSM is tested with <em>Hadoop 2.6</em>.</p>
 </blockquote>
 
 <h3>
-<a name="output-format" class="anchor" href="#output-format"><span class="octicon octicon-link"></span></a>Output format</h3>
+<a id="output-format" class="anchor" href="#output-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Output format</h3>
 
 <p>Frequent sequences are written to a file in the output directory, where each line in the file has the following format:</p>
 
@@ -140,7 +144,7 @@ example illustrates:</p>
 </blockquote>
 
 <h2>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
 
 <p>Assume the following input sequences are in a file(s) (.txt) in a directory called SAMPLE_INPUT/</p>
 
@@ -171,16 +175,18 @@ and maximum gap (γ = 2).</p>
 </blockquote>
 
 <h2>
-<a name="command-line-options" class="anchor" href="#command-line-options"><span class="octicon octicon-link"></span></a>Command line options</h2>
+<a id="command-line-options" class="anchor" href="#command-line-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command line options</h2>
 
 <table>
-<thead><tr>
+<thead>
+<tr>
 <th>Option</th>
 <th>Short Hand</th>
 <th>Optional</th>
 <th>Default Value</th>
 <th>Description</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>support</td>
@@ -281,7 +287,9 @@ and maximum gap (γ = 2).</p>
 <td>Explicitly specify whether or not to allow split by setting this flag.</td>
 </tr>
 </tbody>
-</table><p><strong>Additional Notes</strong></p>
+</table>
+
+<p><strong>Additional Notes</strong></p>
 
 <ul>
 <li>  -(k)eepFiles and -(r)esume options are mutually exclusive.</li>
