@@ -74,7 +74,7 @@ example illustrates:
 >
 >
 >       $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
-Note: The current version of MG-FSM is tested with *Hadoop 2.5.0* abd *Hadoop 2.6.0*.
+Note: The current version of MG-FSM is tested with *Hadoop 2.5.0* and *Hadoop 2.6.0*.
 
 ### Output format
 Frequent sequences are written to a file in the output directory, where each line in the file has the following format:
