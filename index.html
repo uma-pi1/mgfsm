@@ -41,6 +41,11 @@
 
 <p><a href="http://www.mpi-inf.mpg.de/departments/databases-and-information-systems/software/mg-fsm/" title="Mgfsm">MG-FSM</a> is a scalable, general-purpose frequent sequence mining algorithm built for MapReduce. It takes as input a collection of sequences (e.g., a text collection or Web usage logs) and mines frequent sequences subject to a number of constraints such as minimum frequency, maximum length, or proximity constraints (position-based or temporal). A detailed description of MG-FSM can be found <a href="http://resources.mpi-inf.mpg.de/d5/mg-fsm/mg-fsm-sigmod13.pdf" title="SIGMOD paper">here</a>.</p>
 
+<h3>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h3>
+
+<p><a href="http://irismili.wordpress.com/">Iris Miliaraki</a>, <a href="http://people.mpi-inf.mpg.de/%7Ekberberi/">Klaus Berberich</a>, <a href="http://dws.informatik.uni-mannheim.de/en/people/professors/prof-dr-rainer-gemulla/">Rainer Gemulla</a>, <a href="http://people.mpi-inf.mpg.de/%7Ekbeedkar/">Kaustubh Beedkar</a> and <a href="mailto:dhgupta@mpi-inf.mpg.de">Dhruv Gupta</a>.</p>
+
 <h2>
 <a id="mg-fsm-overview" class="anchor" href="#mg-fsm-overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>MG-FSM overview</h2>
 
@@ -130,7 +135,7 @@ example illustrates:</p>
 <pre><code>  $ MGFSM_HOME/bin/mgfsm -i /path/to/input/dir/ -o /path/to/output/dir/ -s σ -g γ -l λ -m d
 </code></pre>
 
-<p>Note: The current version of MG-FSM is tested with <em>Hadoop 2.6</em>.</p>
+<p>Note: The current version of MG-FSM is tested with <em>Hadoop 2.5.0</em> abd <em>Hadoop 2.6.0</em>.</p>
 </blockquote>
 
 <h3>
