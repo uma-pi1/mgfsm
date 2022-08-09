@@ -19,6 +19,7 @@
 package de.mpii.fsm.driver;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -418,12 +419,7 @@ public final class FsmDriver extends AbstractJob {
       commonConfig.setIntermediatePath(params.get("keepFiles"));
     }
     else{
-      File intermediateOutputPath = File.createTempFile("MG_FSM_INTRM_OP_", "");
-      
-      //Below JDK 7 we are only allowed to create temporary files.
-      //Hence, turn the file into a directory in temporary folder.
-      intermediateOutputPath.delete();
-      intermediateOutputPath.mkdir();
+      File intermediateOutputPath = Files.createTempDirectory("MG_FSM_INTRM_OP_").toFile();
       
       commonConfig.setIntermediatePath(intermediateOutputPath.getAbsolutePath().toString());
       
